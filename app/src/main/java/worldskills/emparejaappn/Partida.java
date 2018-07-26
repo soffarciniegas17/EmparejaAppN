@@ -37,7 +37,7 @@ public class Partida extends AppCompatActivity {
     private String nom1, nom2;
     private boolean cambiaCarta, turnoJugador;
     private Animation voltear, girarDesaparecer;
-    private Dialog mensajeFinal;
+    private Dialog mensajeFinal, redes;
     private Chronometer chronometer;
 
     @Override
@@ -292,9 +292,12 @@ public class Partida extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.bton_compartir:
+
                 break;
         }
     }
+
+
     public void findViews(){
         viewJugador1=findViewById(R.id.view_jugador1);
         viewJugador2=findViewById(R.id.view_jugador2);
