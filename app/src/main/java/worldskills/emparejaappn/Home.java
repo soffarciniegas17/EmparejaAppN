@@ -115,6 +115,7 @@ public class Home extends AppCompatActivity {
     public void mostrarPuntajes (View v){
 
         final ImageButton salir = scores.findViewById(R.id.salir);
+        //alexander
         TextView p1, p2, p3, p4;
         p1= scores.findViewById(R.id.p1);
         p2= scores.findViewById(R.id.p2);
