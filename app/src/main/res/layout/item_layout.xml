@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/anchoItem"
+    android:layout_height="@dimen/altoItem">
+
+    <ImageView
+        android:id="@+id/figura"
+        android:padding="5dp"
+        android:layout_width="@dimen/anchoItem"
+        android:layout_height="@dimen/altoItem" />
+
+    <ImageView
+        android:id="@+id/tapar"
+        android:layout_width="@dimen/anchoItem"
+        android:layout_height="@dimen/altoItem" />
+
+</android.support.constraint.ConstraintLayout>
