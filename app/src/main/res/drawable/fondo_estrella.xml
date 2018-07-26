@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:width="100dp"
+        android:height="100dp"
+        android:drawable="@drawable/ic_star_black_24dp"
+        >
 
 
+    </item>
+
+    <item
+        android:width="90dp"
+        android:height="90dp"
+        android:gravity="center_horizontal"
+        android:top="5dp"
+        android:drawable="@drawable/ic_star_border_black_24dp"
+        >
+
+
+    </item>
+
+    <item
+        android:width="45dp"
+        android:height="45dp"
+        android:gravity="center_horizontal"
+        android:top="28dp"
+        android:drawable="@drawable/ic_star_border_black_24dp"
         >
 
 

@@ -1,6 +1,9 @@
 package worldskills.emparejaappn;
 
+import android.app.Dialog;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -28,6 +32,7 @@ public class Partida extends AppCompatActivity {
     private String nom1, nom2;
     private boolean cambiaCarta, turnoJugador;
     private Animation voltear, girarDesaparecer;
+    private Dialog mensajeFinal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,11 @@ public class Partida extends AppCompatActivity {
         animaciones();
         rellenarAzarNumeros(capacidad/2);
         iniciaJuego();
+
+        mensajeFinal=new Dialog(this);
+        mensajeFinal.setContentView(R.layout.mensaje_final);
+        mensajeFinal.setCanceledOnTouchOutside(false);
+        mensajeFinal.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
 
     }
@@ -93,6 +103,7 @@ public class Partida extends AppCompatActivity {
             }
         }catch (Exception e){}
         adapter.notifyDataSetChanged();
+        clickItems();
     }
     public void clickItems(){
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -114,6 +125,8 @@ public class Partida extends AppCompatActivity {
                     view1.startAnimation(voltear);
                     cambiaCarta=true;
                     adapter.notifyDataSetChanged();
+
+                    Toast.makeText(getApplicationContext(),"alex",Toast.LENGTH_SHORT).show();
 
                 }else{
                     position2=position;
@@ -190,20 +203,20 @@ public class Partida extends AppCompatActivity {
             viewScore1.setText(puntos1+"");
 
             viewJugador2.setBackgroundResource(R.drawable.fondo_turno_verde);
-            view2.setBackgroundResource(R.drawable.fondo_turno_verde);
+            viewScore2.setBackgroundResource(R.drawable.fondo_turno_verde);
 
             viewJugador1.setBackgroundResource(R.drawable.fondo_turno_gris);
-            view1.setBackgroundResource(R.drawable.fondo_turno_gris);
+            viewScore1.setBackgroundResource(R.drawable.fondo_turno_gris);
 
             turnoJugador=true;
         }else{
             viewScore2.setText(puntos2+"");
 
             viewJugador1.setBackgroundResource(R.drawable.fondo_turno_verde);
-            view1.setBackgroundResource(R.drawable.fondo_turno_verde);
+            viewScore1.setBackgroundResource(R.drawable.fondo_turno_verde);
 
             viewJugador2.setBackgroundResource(R.drawable.fondo_turno_gris);
-            view2.setBackgroundResource(R.drawable.fondo_turno_gris);
+            viewScore2.setBackgroundResource(R.drawable.fondo_turno_gris);
 
             turnoJugador=false;
         }
@@ -219,6 +232,21 @@ public class Partida extends AppCompatActivity {
         if(ve==0){
             guardarPuntaje();
         }
+    }
+    public void abrirDialogFinJuego(){
+        TextView viewGanador, viewScoreGanador;
+        viewGanador=mensajeFinal.findViewById(R.id.view_ganador);
+        viewScoreGanador=mensajeFinal.findViewById(R.id.view_score_ganador);
+
+        if(puntos2<puntos1){
+            viewGanador.setText(nom1);
+            viewScoreGanador.setText(puntos1+"");
+        }else{
+            viewGanador.setText(nom2);
+            viewScoreGanador.setText(puntos2+"");
+
+        }
+        mensajeFinal.show();
     }
     public void findViews(){
         viewJugador1=findViewById(R.id.view_jugador1);

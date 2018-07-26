@@ -9,6 +9,7 @@
     <ImageView
         android:id="@+id/view_estrella"
         android:layout_width="100dp"
+        android:background="@drawable/fondo_estrella"
         android:layout_gravity="center_horizontal"
         android:layout_height="100dp" />
     <LinearLayout
@@ -25,8 +26,56 @@
             android:layout_gravity="center_horizontal"
             android:textSize="26dp"
             android:textColor="@android:color/white"
+            android:background="@color/morado_oscuro"
+            android:padding="2dp"
 
             android:layout_marginTop="42dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:text="ganador"
+            android:textSize="19dp"
+            android:layout_marginTop="12dp"
+            android:id="@+id/view_ganador"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:text="0"
+            android:textStyle="bold"
+            android:textSize="59dp"
+            android:layout_marginTop="12dp"
+            android:id="@+id/view_score_ganador"
+           />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <ImageButton
+                android:id="@+id/bton_inicio"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+            <ImageButton
+                android:id="@+id/bton_replay"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+            <ImageButton
+                android:id="@+id/bton_compartir"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
