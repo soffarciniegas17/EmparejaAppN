@@ -46,6 +46,7 @@ public class Partida extends AppCompatActivity {
         }
         animaciones();
         rellenarAzarNumeros(capacidad/2);
+        iniciaJuego();
 
 
     }
@@ -215,7 +216,9 @@ public class Partida extends AppCompatActivity {
                 ve=1;
             }
         }
-        if(ve==0)finish();
+        if(ve==0){
+            guardarPuntaje();
+        }
     }
     public void findViews(){
         viewJugador1=findViewById(R.id.view_jugador1);
@@ -224,6 +227,16 @@ public class Partida extends AppCompatActivity {
         viewScore2=findViewById(R.id.view_score2);
         gridView=findViewById(R.id.gridview);
     }
+    private int tiempo=0;
+    private String modo;
+    public void guardarPuntaje(){
+        RegistroBBDD db=new RegistroBBDD(this);
+
+        db.guardarDatos(nom1,puntos1,tiempo,capacidad+"",modo);
+        db.guardarDatos(nom2,puntos2,tiempo,capacidad+"",modo);
+
+    }
+
 
     public void onResume() {
         super.onResume();
