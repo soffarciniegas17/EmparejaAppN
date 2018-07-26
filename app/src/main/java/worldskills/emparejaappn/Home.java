@@ -1,7 +1,11 @@
 package worldskills.emparejaappn;
 
 import android.app.Dialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -87,7 +91,156 @@ public class Home extends AppCompatActivity {
         puntos= new String[4];
 
         RegistroBBDD db = new RegistroBBDD(this);
-        Cursor cursor = db.cargarDatos();
+        Cursor cursor = db.cargarDatos(dificultad,modo);
+        int i =0;
+        try {
+            if (cursor.moveToFirst()){
+                do {
+                    puntos[i]= cursor.getString(0)+ "\n" + cursor.getString(1);
+                    i++;
+                }while (cursor.moveToNext());
+            }
+        } catch (Exception e){
+            for (int i=0; i<puntos.length; i++){
+                puntos[i] =" VACIO  \n NO ONE"
+            }
+        }
 
+    }
+
+    public void mostrarPuntajes (View v){
+
+        final Button salir = scores.findViewById(R.id.salir);
+        TextView p1, p2, p3, p4;
+        p1= scores.findViewById(R.id.p1);
+        p2= scores.findViewById(R.id.p2);
+        p3= scores.findViewById(R.id.p3);
+        p4= scores.findViewById(R.id.p4);
+
+
+        switch (v.getId()){
+            case R.id.bintentos:
+                modo= "1";
+                break;
+            case R.id.btiempo:
+                modo="2";
+                break;
+            case R.id.bfacil:
+                dificultad = "8";
+                break;
+            case R.id.bmedio:
+                dificultad= "12";
+                break;
+            case R.id.bdificil:
+                dificultad="16";
+                break;
+        }
+
+        for (int i =0; i<puntos.length; i++){
+            puntos[i] = "VACIO \n NO ONE";
+        }
+
+        rellenar();
+
+        p1.setText(puntos[0]);
+        p2.setText(puntos[1]);
+        p3.setText(puntos[2]);
+        p4.setText(puntos[3]);
+
+        salir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scores.dismiss();
+            }
+        });
+
+        scores.show();
+    }
+    String modalidad;
+    public void configurar(View v){
+        Button tiempo, intentos;
+        tiempo = settings.findViewById(R.id.tiempo);
+        intentos = settings.findViewById(R.id.intento);
+
+        tiempo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                modalidad = "2";
+                retrasar();
+                settings.dismiss();
+            }
+        });
+
+        intentos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                modalidad = "1";
+                retrasar();
+                settings.dismiss();
+            }
+        });
+    }
+
+    public void retrasar (){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }, 300);
+    }
+
+    public void partida (View v){
+        dificult.show();
+        String juego;
+        switch (v.getId()){
+            case R.id.play:
+                View view = findViewById(R.id.);
+                view.setVisibility(View.VISIBLE);
+                break;
+            case R.id.easy:
+                juego = "8";
+                break;
+            case R.id.medio:
+                juego = "12";
+                break;
+            case R.id.duro:
+                juego = "16";
+                break;
+        }
+
+      Intent  i = new Intent(Home.this, Partida.class);
+        i.putExtra("dificultad", juego);
+        startActivity(i);
+        dificult.dismiss();
+        finish();
+    }
+
+    @Override
+    protected void onPause() {
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        editor.putString("nick1", nick1);
+        editor.putString("nick2", nick2);
+        editor.putString("estado", modalidad);
+
+        editor.apply();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+
+        SharedPreferences datos = PreferenceManager.getDefaultSharedPreferences(this);
+
+        nick1= datos.getString("nick1", "JUGADOR 1");
+        nick2 = datos.getString("nick2", "JUGADOR 2");
+        modalidad = datos.getString("estado", modalidad );
+
+        t1.setText(nick1);
+        t2.setText(nick2);
+        super.onResume();
     }
 }
