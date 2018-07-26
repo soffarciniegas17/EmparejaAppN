@@ -165,6 +165,7 @@ public class Partida extends AppCompatActivity {
                     cartas.get(position2).setFondoTapar(R.drawable.fondo_tapar_carta);
 
                     view1.startAnimation(voltear);
+
                     view2.startAnimation(voltear);
                     if(!turnoJugador){
                         puntos1-=1;
