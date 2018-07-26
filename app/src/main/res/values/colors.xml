@@ -19,5 +19,7 @@
     <color name="azul_oscuroP">#6b709e</color>
     <color name="azul_claroP">#eae4e4</color>
 
+    <color name="trans">#00ffffff</color>
+
 
 </resources>

@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +39,7 @@ public class Home extends AppCompatActivity {
         names = new Dialog(this);
         names.setContentView(R.layout.dialog_names);
         names.setCanceledOnTouchOutside(false);
+        names.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         // DIFICULTAD
 
@@ -192,7 +195,7 @@ public class Home extends AppCompatActivity {
 
     public void partida (View v){
         dificult.show();
-        String juego="8";
+        int juego=8;
         switch (v.getId()){
             case R.id.play:
 
@@ -200,13 +203,13 @@ public class Home extends AppCompatActivity {
                 view.setVisibility(View.VISIBLE);
                 break;
             case R.id.easy:
-                juego = "8";
+                juego =8;
                 break;
             case R.id.medio:
-                juego = "12";
+                juego = 12;
                 break;
             case R.id.duro:
-                juego = "16";
+                juego = 16;
                 break;
         }
 

@@ -36,12 +36,6 @@
     </item>
 
 
-    <item android:drawable="@drawable/cartas_logo"
-        android:width="100dp"
-        android:left="35dp"
-        android:top="15dp"
-        android:height="100dp"
-        />
 
 
 </layer-list>
