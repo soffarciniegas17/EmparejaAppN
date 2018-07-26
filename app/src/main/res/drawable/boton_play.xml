@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+
+        android:width="350dp"
+        android:height="189dp"
+        >
+        <shape >
+
+
+            <solid android:color="@color/morado_oscuro" />
+
+            <corners android:radius="10dp"/>
+        </shape>
+
+
+
+    </item>
+
+    <item
+
+        android:width="350dp"
+        android:height="180dp"
+        >
+        <shape >
+            <gradient android:endColor="@color/morado_oscuro"
+                android:startColor="@color/morado_claro"
+                android:angle="315"
+                />
+
+            <corners android:radius="10dp"/>
+        </shape>
+
+    </item>
+
+
+    <item android:drawable="@drawable/cartas_logo"
+        android:width="100dp"
+        android:left="35dp"
+        android:top="15dp"
+        android:height="100dp"
+        />
+
+
+</layer-list>

@@ -7,6 +7,9 @@
     <color name="azul_claro">#4e39ec</color>
     <color name="azul_oscuro">#291c9f</color>
 
+    <color name="morado_claro">#841dce</color>
+    <color name="morado_oscuro">#350159</color>
+
     <color name="verde_claro">#08a337</color>
     <color name="verde_oscuro">#067327</color>
 
@@ -15,4 +18,6 @@
 
     <color name="azul_oscuroP">#6b709e</color>
     <color name="azul_claroP">#eae4e4</color>
+
+
 </resources>

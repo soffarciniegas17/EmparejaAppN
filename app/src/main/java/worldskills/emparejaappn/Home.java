@@ -101,8 +101,8 @@ public class Home extends AppCompatActivity {
                 }while (cursor.moveToNext());
             }
         } catch (Exception e){
-            for (int i=0; i<puntos.length; i++){
-                puntos[i] =" VACIO  \n NO ONE"
+            for (int a=0; a<puntos.length; a++){
+                puntos[i] =" VACIO  \n NO ONE";
             }
         }
 
@@ -192,10 +192,10 @@ public class Home extends AppCompatActivity {
 
     public void partida (View v){
         dificult.show();
-        String juego;
+        String juego="8";
         switch (v.getId()){
             case R.id.play:
-                View view = findViewById(R.id.);
+                View view = findViewById(R.id.view);
                 view.setVisibility(View.VISIBLE);
                 break;
             case R.id.easy:
