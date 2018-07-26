@@ -20,6 +20,9 @@
     <color name="azul_claroP">#eae4e4</color>
 
     <color name="trans">#00ffffff</color>
+    <color name="negro_transparente">#b2000000</color>
+    <color name="negro_1">#2d2d2d</color>
+
 
 
 </resources>

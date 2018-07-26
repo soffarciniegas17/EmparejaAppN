@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class Home extends AppCompatActivity {
@@ -113,16 +114,19 @@ public class Home extends AppCompatActivity {
 
     public void mostrarPuntajes (View v){
 
-        final Button salir = scores.findViewById(R.id.salir);
+        final ImageButton salir = scores.findViewById(R.id.salir);
         TextView p1, p2, p3, p4;
         p1= scores.findViewById(R.id.p1);
         p2= scores.findViewById(R.id.p2);
         p3= scores.findViewById(R.id.p3);
         p4= scores.findViewById(R.id.p4);
 
+        Button botonp;
+
 
         switch (v.getId()){
             case R.id.bintentos:
+
                 modo= "1";
                 break;
             case R.id.btiempo:
