@@ -101,8 +101,8 @@ public class Home extends AppCompatActivity {
                 }while (cursor.moveToNext());
             }
         } catch (Exception e){
-            for (int i=0; i<puntos.length; i++){
-                puntos[i] =" VACIO  \n NO ONE"
+            for (int a=0; a<puntos.length; a++){
+                puntos[i] =" VACIO  \n NO ONE";
             }
         }
 
