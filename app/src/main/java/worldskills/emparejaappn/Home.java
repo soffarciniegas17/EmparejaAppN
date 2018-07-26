@@ -192,10 +192,10 @@ public class Home extends AppCompatActivity {
 
     public void partida (View v){
         dificult.show();
-        String juego;
+        String juego="8";
         switch (v.getId()){
             case R.id.play:
-                View view = findViewById(R.id.);
+                View view = findViewById(R.id.view);
                 view.setVisibility(View.VISIBLE);
                 break;
             case R.id.easy:
