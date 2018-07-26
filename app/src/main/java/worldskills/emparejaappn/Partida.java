@@ -6,6 +6,8 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -25,6 +27,7 @@ public class Partida extends AppCompatActivity {
     private View view1, view2;
     private String nom1, nom2;
     private boolean cambiaCarta, turnoJugador;
+    private Animation voltear, girarDesaparecer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +39,22 @@ public class Partida extends AppCompatActivity {
         puntos1=0;
         puntos2=0;
 
+
         numeros=new int[capacidad];
         for (int i=0; i<numeros.length;i++){
             numeros[i]=-1;
         }
+        animaciones();
         rellenarAzarNumeros(capacidad/2);
 
 
+    }
+    public void animaciones(){
+        voltear= AnimationUtils.loadAnimation(this, R.anim.voltear);
+        voltear.setFillAfter(true);
+
+        girarDesaparecer=AnimationUtils.loadAnimation(this, R.anim.girar_desaparecer);
+        girarDesaparecer.setFillAfter(true);
     }
     private int base=0;
     public int rellenarAzarNumeros(int parejas){
@@ -88,11 +100,17 @@ public class Partida extends AppCompatActivity {
 
                 if (!cambiaCarta) {
 
+                    if(view1 != null && view2!=null){
+                        view1.clearAnimation();
+                        view2.clearAnimation();
+                    }
+
                     position1=position;
                     view1=view;
 
                     cartas.get(position1).setFondoTapar(android.R.color.transparent);
 
+                    view1.startAnimation(voltear);
                     cambiaCarta=true;
                     adapter.notifyDataSetChanged();
 
@@ -101,7 +119,8 @@ public class Partida extends AppCompatActivity {
                     view2=view;
 
                     cartas.get(position1).setFondoTapar(android.R.color.transparent);
-
+                    view1.clearAnimation();
+                    view2.startAnimation(voltear);
                     cambiaCarta=false;
                     adapter.notifyDataSetChanged();
                     comprueba();
@@ -127,6 +146,9 @@ public class Partida extends AppCompatActivity {
                     view1.setVisibility(View.INVISIBLE);
                     view2.setVisibility(View.INVISIBLE);
 
+                    view1.startAnimation(girarDesaparecer);
+                    view2.startAnimation(girarDesaparecer);
+
                     if(!turnoJugador){
                         puntos1+=100;
 
@@ -138,9 +160,12 @@ public class Partida extends AppCompatActivity {
                     finPartida();
                 }else{
 
+
                     cartas.get(position1).setFondoTapar(R.drawable.fondo_tapar_carta);
                     cartas.get(position2).setFondoTapar(R.drawable.fondo_tapar_carta);
 
+                    view1.startAnimation(voltear);
+                    view2.startAnimation(voltear);
                     if(!turnoJugador){
                         puntos1-=1;
                     }else{
@@ -203,8 +228,8 @@ public class Partida extends AppCompatActivity {
         super.onResume();
         SharedPreferences guarda = PreferenceManager.getDefaultSharedPreferences(this);
 
-        nom1 = guarda.getString("JUGADOR1", "JUGADOR1");
-        nom2 = guarda.getString("JUGADOR2", "JUGADOR2");
+        nom1 = guarda.getString("nick1", "JUGADOR1");
+        nom2 = guarda.getString("nick2", "JUGADOR2");
 
         Random randomB=new Random();
 
