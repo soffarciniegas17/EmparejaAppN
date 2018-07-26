@@ -41,6 +41,16 @@
             android:layout_marginTop="12dp"
             android:id="@+id/view_ganador"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:text="00"
+            android:textSize="15dp"
+
+            android:id="@+id/view_tiempo"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -49,7 +59,7 @@
             android:textColor="@android:color/white"
             android:text="0"
             android:textStyle="bold"
-            android:textSize="59dp"
+            android:textSize="55dp"
             android:layout_marginTop="12dp"
             android:id="@+id/view_score_ganador"
            />
@@ -65,16 +75,27 @@
 
             <ImageButton
                 android:id="@+id/bton_inicio"
+                android:background="@drawable/boton_mensaje_final"
                 android:layout_width="50dp"
-                android:layout_height="50dp" />
+                android:src="@drawable/home_icono"
+                android:layout_height="50dp"
+                android:layout_marginRight="5dp"
+                android:onClick="botonesFinal"/>
             <ImageButton
                 android:id="@+id/bton_replay"
                 android:layout_width="50dp"
-                android:layout_height="50dp" />
+                android:layout_height="50dp"
+                android:background="@drawable/boton_mensaje_final"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/icono_replay"
+                android:onClick="botonesFinal"/>
             <ImageButton
                 android:id="@+id/bton_compartir"
                 android:layout_width="50dp"
-                android:layout_height="50dp" />
+                android:layout_height="50dp"
+                android:src="@drawable/icno_shared"
+                android:background="@drawable/boton_mensaje_final"
+                android:onClick="botonesFinal"/>
         </LinearLayout>
     </LinearLayout>
 

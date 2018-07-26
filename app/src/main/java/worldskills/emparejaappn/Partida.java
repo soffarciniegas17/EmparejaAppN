@@ -1,10 +1,13 @@
 package worldskills.emparejaappn;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +15,9 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.Chronometer;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +38,7 @@ public class Partida extends AppCompatActivity {
     private boolean cambiaCarta, turnoJugador;
     private Animation voltear, girarDesaparecer;
     private Dialog mensajeFinal;
+    private Chronometer chronometer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,11 @@ public class Partida extends AppCompatActivity {
         setContentView(R.layout.activity_partida);
 
         findViews();
+        Bundle datos=getIntent().getExtras();
+        try{
+            capacidad=Integer.parseInt(datos.getString("dificultad"));
+
+        }catch (Exception e){}
         capacidad=8;
         puntos1=0;
         puntos2=0;
@@ -126,13 +137,13 @@ public class Partida extends AppCompatActivity {
                     cambiaCarta=true;
                     adapter.notifyDataSetChanged();
 
-                    Toast.makeText(getApplicationContext(),"alex",Toast.LENGTH_SHORT).show();
+
 
                 }else{
                     position2=position;
                     view2=view;
 
-                    cartas.get(position1).setFondoTapar(android.R.color.transparent);
+                    cartas.get(position2).setFondoTapar(android.R.color.transparent);
                     view1.clearAnimation();
                     view2.startAnimation(voltear);
                     cambiaCarta=false;
@@ -230,13 +241,23 @@ public class Partida extends AppCompatActivity {
             }
         }
         if(ve==0){
+            abrirDialogFinJuego();
             guardarPuntaje();
         }
     }
     public void abrirDialogFinJuego(){
-        TextView viewGanador, viewScoreGanador;
+        TextView viewGanador, viewScoreGanador, viewTiempoPartida;
         viewGanador=mensajeFinal.findViewById(R.id.view_ganador);
         viewScoreGanador=mensajeFinal.findViewById(R.id.view_score_ganador);
+        viewTiempoPartida=mensajeFinal.findViewById(R.id.view_tiempo);
+
+        if(modo.equalsIgnoreCase("2")){
+            chronometer.stop();
+             tiempo=(int)((SystemClock.elapsedRealtime()-chronometer.getBase())/1000);
+            viewTiempoPartida.setText(tiempo+"");
+        }else{
+            viewScoreGanador.setText("no time");
+        }
 
         if(puntos2<puntos1){
             viewGanador.setText(nom1);
@@ -246,7 +267,33 @@ public class Partida extends AppCompatActivity {
             viewScoreGanador.setText(puntos2+"");
 
         }
+        ImageView btonHome, btonReplay, btonShared;
+
+        mensajeFinal.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                Intent intent=new Intent(getApplicationContext(), Partida.class);
+                startActivity(intent);
+            }
+        });
+
+
         mensajeFinal.show();
+    }
+    public void botonesFinal(View v){
+        Intent intent;
+        switch (v.getId()){
+            case R.id.bton_inicio:
+                intent=new Intent(this, Home.class);
+                startActivity(intent);
+                break;
+            case R.id.bton_replay:
+                intent=new Intent(this, Partida.class);
+                startActivity(intent);
+                break;
+            case R.id.bton_compartir:
+                break;
+        }
     }
     public void findViews(){
         viewJugador1=findViewById(R.id.view_jugador1);
@@ -254,6 +301,7 @@ public class Partida extends AppCompatActivity {
         viewScore1=findViewById(R.id.view_score1);
         viewScore2=findViewById(R.id.view_score2);
         gridView=findViewById(R.id.gridview);
+        chronometer=findViewById(R.id.view_cronometro);
     }
     private int tiempo=0;
     private String modo;
@@ -262,6 +310,7 @@ public class Partida extends AppCompatActivity {
 
         db.guardarDatos(nom1,puntos1,tiempo,capacidad+"",modo);
         db.guardarDatos(nom2,puntos2,tiempo,capacidad+"",modo);
+        Toast.makeText(getApplicationContext(),"EmparejaApp",Toast.LENGTH_SHORT).show();
 
     }
 
@@ -272,11 +321,16 @@ public class Partida extends AppCompatActivity {
 
         nom1 = guarda.getString("nick1", "JUGADOR1");
         nom2 = guarda.getString("nick2", "JUGADOR2");
+        modo=guarda.getString("estado","1");
 
         Random randomB=new Random();
 
         turnoJugador=randomB.nextBoolean();
         estadoJugador();
+
+        if(modo.equalsIgnoreCase("2")){
+            chronometer.start();
+        }
     }
     public void onPause(){
         super.onPause();
