@@ -161,13 +161,16 @@ public class Home extends AppCompatActivity {
     }
     String modalidad;
     public void configurar(View v){
-        Button tiempo, intentos;
+        final Button tiempo, intentos;
         tiempo = settings.findViewById(R.id.tiempo);
         intentos = settings.findViewById(R.id.intento);
 
         tiempo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                tiempo.setBackgroundResource(R.drawable.activado_boton);
+                intentos.setBackgroundResource(R.drawable.boton_desactivado);
                 modalidad = "2";
                 retrasar();
                 settings.dismiss();
@@ -177,6 +180,8 @@ public class Home extends AppCompatActivity {
         intentos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tiempo.setBackgroundResource(R.drawable.boton_desactivado);
+                intentos.setBackgroundResource(R.drawable.activado_boton);
                 modalidad = "1";
                 retrasar();
                 settings.dismiss();

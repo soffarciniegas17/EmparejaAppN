@@ -3,13 +3,13 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 <item
 
-    android:width="350dp"
-    android:height="120dp"
+    android:width="209dp"
+    android:height="100dp"
     >
     <shape >
 
 
-        <solid android:color="@color/verde_claro" />
+        <solid android:color="@color/gris_claro" />
 
         <corners android:radius="10dp"/>
     </shape>
@@ -20,12 +20,12 @@
 
 <item
 
-android:width="350dp"
-android:height="120dp"
+android:width="200dp"
+android:height="100dp"
     >
 <shape >
-    <gradient android:endColor="@color/verde_oscuro"
-        android:startColor="@color/verde_claro"
+    <gradient android:endColor="@color/gris_claro"
+        android:startColor="@color/gris_oscuro"
         android:angle="315"
         />
 
