@@ -195,6 +195,7 @@ public class Home extends AppCompatActivity {
         String juego="8";
         switch (v.getId()){
             case R.id.play:
+
                 View view = findViewById(R.id.view);
                 view.setVisibility(View.VISIBLE);
                 break;
