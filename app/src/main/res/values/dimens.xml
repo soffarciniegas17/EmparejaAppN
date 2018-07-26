@@ -4,4 +4,7 @@
     <dimen name="anchoItem">80dp</dimen>
     <dimen name="altoItem">120dp</dimen>
     <dimen name="altoItem2">115dp</dimen>
+    <dimen name="radioItem">12dp</dimen>
+    <dimen name="alto_figuraItem">15dp</dimen>
+    <dimen name="ancho_figuraItem">70dp</dimen>
 </resources>

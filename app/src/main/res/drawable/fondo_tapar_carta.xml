@@ -2,8 +2,75 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        
+        android:width="@dimen/anchoItem"
+        android:height="@dimen/altoItem"
         >
+        <shape>
+            <solid android:color="@color/azul_oscuro"/>
+            <corners android:radius="@dimen/radioItem"/>
+
+        </shape>
 
     </item>
+
+
+    <item
+        android:width="@dimen/anchoItem"
+        android:height="@dimen/altoItem2"
+        >
+        <shape>
+            <solid android:color="@color/azul_claro"/>
+            <corners android:radius="@dimen/radioItem"/>
+
+        </shape>
+
+    </item>
+
+    <item
+        android:width="@dimen/ancho_figuraItem"
+        android:height="@dimen/alto_figuraItem"
+        android:gravity="center_horizontal"
+        android:top="8dp"
+        >
+        <shape>
+            <solid android:color="@color/azul_oscuro"/>
+            <corners android:radius="@dimen/radioItem"/>
+
+        </shape>
+
+    </item>
+
+
+    <item
+        android:width="50dp"
+        android:height="50dp"
+        android:gravity="center"
+        android:top="-5dp"
+
+        >
+        <shape android:shape="oval">
+            <solid android:color="@color/azul_oscuro"/>
+            <corners android:radius="@dimen/radioItem"/>
+
+        </shape>
+
+    </item>
+
+
+    <item
+        android:width="@dimen/ancho_figuraItem"
+        android:height="@dimen/alto_figuraItem"
+        android:gravity="center_horizontal"
+        android:top="92dp"
+        >
+        <shape>
+            <solid android:color="@color/azul_oscuro"/>
+            <corners android:radius="@dimen/radioItem"/>
+
+        </shape>
+
+    </item>
+
+
+
 </layer-list>
