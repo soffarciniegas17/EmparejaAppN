@@ -68,9 +68,15 @@
             android:textColor="@android:color/white"
 
             />
-        <Space
+        <Chronometer
+            android:id="@+id/view_cronometro"
             android:layout_width="99dp"
-            android:layout_height="1dp" />
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="15dp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+
 
         <TextView
             android:layout_width="wrap_content"
